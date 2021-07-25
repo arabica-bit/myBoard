@@ -42,6 +42,25 @@ public class BoardService {
         return resVo;
     }
 
+
+    public ResVo boardUpdate(Long id, BoardInsertVo body){
+        //Service Status
+        ResVo resVo = new ResVo("1");
+
+        BoardDto input = new BoardDto();
+        input.setDocId(id);
+        input.setRegUser(body.getEdit_user());
+        input.setSubject(body.getSubject());
+        input.setContent(body.getContent());
+
+        int ret = boardDao.updateOne(input);
+        log.info("updateOne result [" + ret + "]");
+
+        if(ret > 0) resVo.setStatus("0");
+        return resVo;
+    }
+
+
     public ResVo boardSelect(Long id){
         //Service Status
         ResVo resVo = new ResVo("1");
@@ -63,19 +82,34 @@ public class BoardService {
         return resVo;
     }
 
-    public ResVo boardUpdate(){
+    public ResVo boardChangeStatus(Long id, BoardInsertVo body){
         //Service Status
         ResVo resVo = new ResVo("1");
 
-        //ResVo resVo = new ResVo("0");
+        BoardDto input = new BoardDto();
+        input.setDocId(id);
+        input.setRegUser(body.getEdit_user());
+        input.setIsDel("Y");
+
+        int ret = boardDao.changeStatus(input);
+        log.info("changeStatus result [" + ret + "]");
+
+        if(ret > 0) resVo.setStatus("0");
         return resVo;
     }
 
-    public ResVo boardDelete(){
+    public ResVo boardDelete(Long id, BoardInsertVo body){
         //Service Status
         ResVo resVo = new ResVo("1");
 
-        //ResVo resVo = new ResVo("0");
+        BoardDto input = new BoardDto();
+        input.setDocId(id);
+        input.setRegUser(body.getEdit_user());
+
+        int ret = boardDao.deleteOne(input);
+        log.info("deleteOne result [" + ret + "]");
+
+        if(ret > 0) resVo.setStatus("0");
         return resVo;
     }
 

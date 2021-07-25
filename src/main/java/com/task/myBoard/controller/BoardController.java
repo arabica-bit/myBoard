@@ -47,13 +47,15 @@ public class BoardController {
     }
 
     /** TAG[IF-MBY-002] */
-    @RequestMapping(value="/api/board/doc", method= RequestMethod.PUT)
-    public ResVo boardUpdate(@RequestBody BoardInsertVo body) throws Exception {
+    @RequestMapping(value="/api/board/{docId}", method= RequestMethod.PUT)
+    public ResVo boardUpdate(@PathVariable("docId") String docId,
+                             @RequestBody BoardInsertVo body) throws Exception {
         log.info("------- BOARD API: TAG[IF-MBY-002] --------");
         log.info(body.toString());
 
         //update the doc
-        ResVo resVo = boardService.boardUpdate();
+        Long longDocId = Long.parseLong(docId);
+        ResVo resVo = boardService.boardUpdate(longDocId, body);
 
         return resVo;
     }
@@ -72,15 +74,32 @@ public class BoardController {
     }
 
     /** TAG[IF-MBY-004] */
-    @RequestMapping(value="/api/board/doc", method= RequestMethod.DELETE)
-    public ResVo boardDelete(@RequestBody BoardInsertVo body) throws Exception {
+    @RequestMapping(value="/api/board/{docId}/change", method= RequestMethod.PUT)
+    public ResVo boardDeleteStatus(@PathVariable("docId") String docId,
+                             @RequestBody BoardInsertVo body) throws Exception {
         log.info("------- BOARD API: TAG[IF-MBY-004] --------");
         log.info(body.toString());
 
         //delete the doc
-        ResVo resVo = boardService.boardDelete();
+        Long longDocId = Long.parseLong(docId);
+        ResVo resVo = boardService.boardChangeStatus(longDocId, body);
 
         return resVo;
     }
+
+    /** TAG[IF-MBY-005] */
+    @RequestMapping(value="/api/board/{docId}", method= RequestMethod.DELETE)
+    public ResVo boardDelete(@PathVariable("docId") String docId,
+                             @RequestBody BoardInsertVo body) throws Exception {
+        log.info("------- BOARD API: TAG[IF-MBY-005] --------");
+        log.info(body.toString());
+
+        //delete the doc
+        Long longDocId = Long.parseLong(docId);
+        ResVo resVo = boardService.boardDelete(longDocId, body);
+
+        return resVo;
+    }
+
 
 }

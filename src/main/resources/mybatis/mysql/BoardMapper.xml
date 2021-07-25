@@ -13,6 +13,19 @@
         )
     </insert>
 
+
+    <update id="updateOne">
+        UPDATE myb_board
+        SET
+            subject = #{subject},
+            content = #{content}
+        WHERE
+            id = #{docId}
+        AND
+            reg_user = #{regUser}
+    </update>
+
+
     <select id="selectOne" parameterType="Long" resultType="BoardDto">
         SELECT
             id as docId,
@@ -24,7 +37,30 @@
             edit_dt as editDt,
             content
         FROM myb_board
-        WHERE id = #{docId}
+        WHERE
+            id = #{docId}
     </select>
+
+
+    <update id="changeStatus">
+        UPDATE myb_board
+        SET
+            is_del = #{isDel}
+        WHERE
+            id = #{docId}
+        AND
+            reg_user = #{regUser}
+    </update>
+
+
+    <delete id="deleteOne">
+        DELETE FROM myb_board
+        WHERE
+            id = #{docId}
+        AND
+            reg_user = #{regUser}
+        AND
+            is_del = "Y"
+    </delete>
 
 </mapper>
