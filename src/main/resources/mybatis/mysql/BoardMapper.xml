@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.task.myBoard.store.dao.BoardDao">
+
+    <insert id="insertOne" useGeneratedKeys="true" keyProperty="docId">
+        INSERT INTO myb_board (
+            is_del, reg_user, subject, hits, reg_dt, edit_dt, content
+        )
+        VALUES (
+            #{isDel}, #{regUser}, #{subject}, #{hits}, #{regDt}, #{editDt}, #{content}
+        )
+    </insert>
+
+    <select id="selectOne" parameterType="Long" resultType="BoardDto">
+        SELECT
+            id as docId,
+            is_del as isDel,
+            reg_user as regUser,
+            subject,
+            hits,
+            reg_dt as regDt,
+            edit_dt as editDt,
+            content
+        FROM myb_board
+        WHERE id = #{docId}
+    </select>
+
+</mapper>
