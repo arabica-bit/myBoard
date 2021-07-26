@@ -1,5 +1,6 @@
 package com.task.myBoard.store.dao;
 
+import com.task.myBoard.store.dto.BoardDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

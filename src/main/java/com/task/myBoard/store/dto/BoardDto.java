@@ -1,4 +1,4 @@
-package com.task.myBoard.store.dao;
+package com.task.myBoard.store.dto;
 
 import lombok.Getter;
 import lombok.Setter;

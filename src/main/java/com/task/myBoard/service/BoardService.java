@@ -1,7 +1,7 @@
 package com.task.myBoard.service;
 
 import com.task.myBoard.store.dao.BoardDao;
-import com.task.myBoard.store.dao.BoardDto;
+import com.task.myBoard.store.dto.BoardDto;
 import com.task.myBoard.utils.TimeFormatUtil;
 import com.task.myBoard.vo.BoardInsertVo;
 import com.task.myBoard.vo.ResVo;
